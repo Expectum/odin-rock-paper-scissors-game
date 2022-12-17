@@ -5,9 +5,18 @@ function getComputerChoice() {
     return rps[random];
 }
 
-let userInput = window.prompt("Enter rock, paper or scissors.","");
-let char = userInput.charAt(0).toUpperCase();
-let userSelection = char + userInput.toLowerCase().slice(1);
+let playerInput = window.prompt("Enter rock, paper or scissors.","");
+let char = playerInput.charAt(0).toUpperCase();
+let playerSelection = char + playerInput.toLowerCase().slice(1);
 let computerSelection = getComputerChoice();
-
-console.log(computerSelection, userSelection);
+function playRound(playerSelection, computerSelection) {
+if (playerSelection == computerSelection) {
+    return ("You Draw! " + computerSelection + " ties with " + playerSelection + ".");
+} else if (((playerSelection == "Paper") && (computerSelection == "Rock")) || 
+((playerSelection == "Rock") && (computerSelection == "Scissors")) || 
+((playerSelection == "Scissors") && (computerSelection == "Paper"))){
+    return ("You Win! " + playerSelection + " beats " + computerSelection + ".");
+} else {
+    return ("You Lose! " + computerSelection + " beats " + playerSelection + ".");
+}};
+console.log(playRound(playerSelection, computerSelection));
