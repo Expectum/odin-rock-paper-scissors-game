@@ -13,7 +13,6 @@ function playRound(playerSelection, computerSelection, playerScore) {
     }};
 function game() {
 let playerScore = 0;
-for (let i = 0; i < 5; i++) {
     function getComputerChoice() {
         let rps = ["Rock", "Paper", "Scissors"];
         const random = Math.floor(Math.random() * 3);
@@ -28,6 +27,6 @@ for (let i = 0; i < 5; i++) {
     console.log("You Win the Game!");
 } else {
     console.log("You Lose the Game!");
-}}
+}
 game();
 
