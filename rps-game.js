@@ -12,7 +12,7 @@ function playRound(playerSelection, computerSelection, playerScore) {
         return playerScore;
     }};
 function game() {
-let playerScore = 0;
+    let playerScore = 0;
     function getComputerChoice() {
         let rps = ["Rock", "Paper", "Scissors"];
         const random = Math.floor(Math.random() * 3);
@@ -23,10 +23,13 @@ let playerScore = 0;
     let char = playerInput.charAt(0).toUpperCase();
     let playerSelection = char + playerInput.toLowerCase().slice(1);
     playerScore = playRound(playerSelection, computerSelection, playerScore);
-}     if (playerScore > 2) {
-    console.log("You Win the Game!");
-} else {
-    console.log("You Lose the Game!");
-}
+}     
+const container = document.querySelector('#container');
+const button1 = document.createElement('button');
+const button2 = document.createElement('button');
+const button3 = document.createElement('button');
+container.appendChild(button1);    
+container.appendChild(button2);     
+container.appendChild(button3);        
 game();
 
