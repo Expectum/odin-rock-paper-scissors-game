@@ -13,16 +13,24 @@ function playRound(playerSelection, computerSelection, playerScore, computerScor
         computerScore += 1;
         return [playerScore, computerScore];
     }};
-function game() {
-
-    let computerSelection = getComputerChoice();
-    let playerInput = window.prompt("Enter rock, paper or scissors.","");
-    let char = playerInput.charAt(0).toUpperCase();
-    let playerSelection = button1 || button2 || button3;
-    playerScore = playRound(playerSelection, computerSelection, playerScore);
-}     
 function getScore(playerScore, computerScore) {
-    div.textContent = `${playerScore} - ${computerScore}`;
+    scoreDiv.textContent = `${playerScore} - ${computerScore}`;
+}
+function getWinner(playerScore, computerScore) {
+    if (playerScore == 5) {
+        winnerDiv.textContent = "Congratulations! You won the game!";
+        playerScore = 0;
+        computerScore = 0;
+        getScore(playerScore, computerScore);
+        return [playerScore,computerScore];
+    } else if (computerScore == 5) {
+        winnerDiv.textContent = "Too bad! You lost!";
+        playerScore = 0;
+        computerScore = 0;
+        getScore(playerScore, computerScore);
+        return [playerScore,computerScore];
+    }
+    return [playerScore,computerScore];
 }
 function getComputerChoice() {
     let rps = ["Rock", "Paper", "Scissors"];
@@ -32,31 +40,34 @@ function getComputerChoice() {
 let playerScore = 0;
 let computerScore = 0;
 const container = document.querySelector('#container');
-const button1 = document.createElement('button');
-const button2 = document.createElement('button');
-const button3 = document.createElement('button');
-const div = document.createElement('div');
+const rockButton = document.createElement('button');
+const paperButton = document.createElement('button');
+const scissorsButton = document.createElement('button');
+const scoreDiv = document.createElement('div');
+const winnerDiv = document.createElement('div');
 let playerSelection;
-button1.addEventListener('click', () => {
+rockButton.addEventListener('click', () => {
     playerSelection = "Rock";
     let computerSelection = getComputerChoice();
     [playerScore, computerScore] = playRound(playerSelection,computerSelection, playerScore, computerScore, playerScore, computerScore);
     getScore(playerScore,computerScore);
 });
-button2.addEventListener('click', () => {
+paperButton.addEventListener('click', () => {
     playerSelection = "Paper";
     let computerSelection = getComputerChoice();
     [playerScore, computerScore] = playRound(playerSelection,computerSelection, playerScore, computerScore);
     getScore(playerScore,computerScore);
 });
-button3.addEventListener('click', () => {
+scissorsButton.addEventListener('click', () => {
     playerSelection = "Scissors";
     let computerSelection = getComputerChoice();
     [playerScore, computerScore] = playRound(playerSelection,computerSelection, playerScore, computerScore);
     getScore(playerScore,computerScore);
+    [playerScore, computerScore] = getWinner(playerScore,computerScore);
 });
-container.appendChild(button1);    
-container.appendChild(button2);     
-container.appendChild(button3);   
-container.appendChild(div);     
-
+getScore(playerScore,computerScore);
+container.appendChild(rockButton);    
+container.appendChild(paperButton);     
+container.appendChild(scissorsButton);   
+container.appendChild(scoreDiv);     
+container.appendChild(winnerDiv);  
